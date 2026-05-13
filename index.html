@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LadyDrive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#ride">
+          <img src="assets/logo.png" alt="LadyDrive" />
+          <span>LadyDrive</span>
+        </a>
+        <nav aria-label="Navegação principal">
+          <a href="#ride">Corrida</a>
+          <a href="#security">Segurança</a>
+          <a href="#plans">Pacotes</a>
+          <a href="#rules">Regras</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Transporte pensado para mulheres</p>
+            <h1>Corridas com conforto, acolhimento e segurança em primeiro lugar.</h1>
+            <p class="hero-text">
+              Escolha o tipo de corrida, veja o valor estimado, ative recursos de segurança e acompanhe uma viagem simulada do LadyDrive.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-action" href="#ride">Pedir corrida</a>
+              <a class="secondary-action" href="#security">Ver segurança</a>
+            </div>
+          </div>
+          <div class="hero-media" aria-label="Mulher entrando em carro LadyDrive">
+            <img src="assets/hero-car.png" alt="Carro LadyDrive com passageira" />
+          </div>
+        </section>
+
+        <section id="ride" class="ride-workspace" aria-label="Simulador de corrida">
+          <div class="booking-panel">
+            <div class="section-heading">
+              <p class="eyebrow">Simulação funcional</p>
+              <h2>Monte sua corrida</h2>
+              <p>Nada será cobrado e nenhuma corrida real será chamada.</p>
+            </div>
+
+            <form id="rideForm" class="ride-form">
+              <label>
+                Saída
+                <input id="pickup" name="pickup" type="text" value="Shopping Central" autocomplete="off" />
+              </label>
+              <label>
+                Destino
+                <input id="destination" name="destination" type="text" value="Faculdade Aurora" autocomplete="off" />
+              </label>
+
+              <div class="field-row">
+                <label>
+                  Data
+                  <input id="date" name="date" type="date" />
+                </label>
+                <label>
+                  Horário
+                  <input id="time" name="time" type="time" />
+                </label>
+              </div>
+
+              <fieldset>
+                <legend>Tipo de corrida</legend>
+                <div class="ride-types">
+                  <label class="choice-card">
+                    <input type="radio" name="type" value="common" checked />
+                    <span>
+                      <strong>Comum</strong>
+                      <small>Carro simples, água, Wi-Fi e carregador.</small>
+                    </span>
+                    <b id="commonPrice">R$ 18,50</b>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="type" value="premium" />
+                    <span>
+                      <strong>Premium</strong>
+                      <small>Mais conforto e atendimento diferenciado.</small>
+                    </span>
+                    <b id="premiumPrice">R$ 27,80</b>
+                  </label>
+                </div>
+              </fieldset>
+
+              <label>
+                Promoção ou prioridade
+                <select id="promo" name="promo">
+                  <option value="none">Sem promoção</option>
+                  <option value="student">Estudante acima de 15 anos</option>
+                  <option value="pregnant">Gestante</option>
+                  <option value="child">Crianças e excursões</option>
+                  <option value="pcd">Pessoa com deficiência</option>
+                  <option value="autism">Pessoa com autismo</option>
+                  <option value="obesity">Pessoa com obesidade</option>
+                </select>
+              </label>
+
+              <div class="switch-grid">
+                <label class="switch">
+                  <input id="silentMode" type="checkbox" />
+                  <span>Prefiro silêncio</span>
+                </label>
+                <label class="switch">
+                  <input id="musicMode" type="checkbox" checked />
+                  <span>Escolher música</span>
+                </label>
+                <label class="switch">
+                  <input id="familyShare" type="checkbox" checked />
+                  <span>Compartilhar com família</span>
+                </label>
+                <label class="switch">
+                  <input id="nightSafety" type="checkbox" />
+                  <span>Reforço à noite</span>
+                </label>
+              </div>
+
+              <button class="primary-action full" type="submit">Simular corrida</button>
+            </form>
+          </div>
+
+          <div class="phone-stage" aria-live="polite">
+            <div class="phone">
+              <div class="phone-top">
+                <span>LadyDrive</span>
+                <button id="sosButton" class="icon-button danger" type="button" aria-label="Abrir SOS silencioso">SOS</button>
+              </div>
+              <div class="map-card">
+                <div class="map-route">
+                  <span class="pin start"></span>
+                  <span class="route-line"></span>
+                  <span class="car-dot"></span>
+                  <span class="pin end"></span>
+                </div>
+                <div class="map-label origin" id="mapPickup">Shopping Central</div>
+                <div class="map-label target" id="mapDestination">Faculdade Aurora</div>
+              </div>
+
+              <div class="trip-card">
+                <div>
+                  <p id="tripStatus">Pronta para simular</p>
+                  <h3 id="tripTitle">Escolha sua corrida</h3>
+                </div>
+                <strong id="tripPrice">R$ 18,50</strong>
+              </div>
+
+              <div class="driver-card">
+                <img src="assets/app-preview.png" alt="Prévia do aplicativo LadyDrive" />
+                <div>
+                  <p>Motorista sugerida</p>
+                  <h3>Marina Lopes</h3>
+                  <span>4,98 estrelas • Treinada • Reconhecimento facial OK</span>
+                </div>
+              </div>
+
+              <div class="progress-steps" id="progressSteps">
+                <span class="active">Pedido</span>
+                <span>Motorista</span>
+                <span>Em rota</span>
+                <span>Chegada</span>
+              </div>
+
+              <div class="phone-actions">
+                <button id="shareButton" type="button">Compartilhar rota</button>
+                <button id="rateButton" type="button">Avaliar</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="security" class="security-band">
+          <div>
+            <p class="eyebrow">Proteção durante o trajeto</p>
+            <h2>Recursos de segurança que aparecem antes, durante e depois.</h2>
+          </div>
+          <div class="security-grid">
+            <article>
+              <span>01</span>
+              <h3>SOS silencioso</h3>
+              <p>Abre um protocolo simulado com localização, motorista e contatos de confiança.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Câmera no carro</h3>
+              <p>Indica que a viagem tem monitoramento e registro de segurança.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Compartilhamento</h3>
+              <p>Gera uma mensagem pronta com dados da corrida para família ou amigas.</p>
+            </article>
+            <article>
+              <span>04</span>
+              <h3>Denúncia rápida</h3>
+              <p>Permite reportar problemas no protótipo sem acionar serviços reais.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="plans" class="plans-section">
+          <div class="section-heading">
+            <p class="eyebrow">Pacotes e extras</p>
+            <h2>Opções para rotina, escola, trabalho e excursão.</h2>
+          </div>
+          <div class="plans-grid">
+            <button class="plan active" data-plan="daily" type="button">
+              <strong>Diário</strong>
+              <span>R$ 10 por dia</span>
+            </button>
+            <button class="plan" data-plan="weekly" type="button">
+              <strong>Semanal</strong>
+              <span>R$ 70 por semana</span>
+            </button>
+            <button class="plan" data-plan="monthly" type="button">
+              <strong>Mensal</strong>
+              <span>R$ 350 por mês</span>
+            </button>
+            <button class="plan" data-plan="school" type="button">
+              <strong>Escola</strong>
+              <span>Rotina estudantil</span>
+            </button>
+            <button class="plan" data-plan="work" type="button">
+              <strong>Trabalho</strong>
+              <span>Ida e volta</span>
+            </button>
+            <button class="plan" data-plan="tour" type="button">
+              <strong>Excursão</strong>
+              <span>Grupo e agenda</span>
+            </button>
+          </div>
+        </section>
+
+        <section id="rules" class="rules-section">
+          <div class="rules-copy">
+            <p class="eyebrow">Regras do protótipo</p>
+            <h2>Uso pensado para mulheres, com limites claros.</h2>
+            <p>
+              Idade mínima de 15 anos para passageiras. Meninos podem acompanhar até 13 anos. O app abaixo mostra regras e alertas, mas não valida documentos reais.
+            </p>
+          </div>
+          <div class="rules-panel">
+            <div class="rule-ok">Mulheres e meninas acima de 15 anos</div>
+            <div class="rule-ok">Meninos acompanhantes até 13 anos</div>
+            <div class="rule-warn">Preços podem mudar em feriados</div>
+            <div class="rule-warn">Pagamento e finalização são simulados</div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="sosDialog">
+      <form method="dialog" class="modal-card">
+        <button class="close-button" value="cancel" aria-label="Fechar">×</button>
+        <p class="eyebrow">SOS silencioso</p>
+        <h2>Protocolo simulado ativado</h2>
+        <p id="sosMessage">
+          Sua localização e os dados da motorista seriam compartilhados com contatos de confiança. Nenhum serviço real foi acionado.
+        </p>
+        <div class="modal-actions">
+          <button value="share" id="copySos" type="button">Copiar mensagem</button>
+          <button value="cancel">Entendi</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

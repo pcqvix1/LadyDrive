@@ -1,0 +1,4 @@
+.pptx_extract/
+node_modules/
+dist/
+.DS_Store
